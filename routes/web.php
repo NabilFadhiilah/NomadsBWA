@@ -11,8 +11,9 @@
 |
 */
 
-use App\Http\Controllers\Admin\DashboardController;
 // use Illuminate\Routing\Route;
+// use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\DashboardController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -25,7 +26,12 @@ Route::get('/checkout/success', 'CheckoutController@success')->name('Checkout-Su
 
 Route::prefix('admin')
     ->namespace('Admin')
+    ->middleware(['auth', 'admin'])
     ->group(function () {
         Route::get('/', 'DashboardController@index')
             ->name('dashboard');
     });
+
+Auth::routes(['verify' => true]);
+
+// Route::get('/home', 'HomeController@index')->name('home');
