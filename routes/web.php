@@ -13,6 +13,7 @@
 
 // use Illuminate\Routing\Route;
 // use Illuminate\Support\Facades\Auth;
+// use Illuminate\Routing\Route;
 use App\Http\Controllers\Admin\DashboardController;
 
 // Route::get('/', function () {
@@ -30,6 +31,9 @@ Route::prefix('admin')
     ->group(function () {
         Route::get('/', 'DashboardController@index')
             ->name('dashboard');
+
+        Route::resource('travel-package', 'TravelPackageController');
+        // Route::resource('travel-package', 'TravelPackageController');
     });
 
 Auth::routes(['verify' => true]);
